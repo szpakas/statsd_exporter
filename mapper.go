@@ -63,6 +63,11 @@ func (m *metricMapper) initFromString(fileContents string) error {
 			if line == "" {
 				continue
 			}
+
+			if strings.HasPrefix(line, "#") {
+				continue
+			}
+
 			if !metricLineRE.MatchString(line) {
 				return fmt.Errorf("Line %d: expected metric match line, got: %s", i, line)
 			}
