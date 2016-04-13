@@ -27,7 +27,7 @@ var (
 	identifierRE   = `[a-zA-Z_][a-zA-Z0-9_]+`
 	statsdMetricRE = `[a-zA-Z_](-?[a-zA-Z0-9_])+`
 
-	metricLineRE = regexp.MustCompile(`^(\*\.|` + statsdMetricRE + `\.)+(\*|` + statsdMetricRE + `)$`)
+	metricLineRE = regexp.MustCompile(`^([a-zA-Z]+-\*\.|\*\.|` + statsdMetricRE + `\.)+([a-zA-Z]+-\*|\*|` + statsdMetricRE + `)$`)
 	labelLineRE  = regexp.MustCompile(`^(` + identifierRE + `)\s*=\s*"(.*)"$`)
 	metricNameRE = regexp.MustCompile(`^` + identifierRE + `$`)
 )
