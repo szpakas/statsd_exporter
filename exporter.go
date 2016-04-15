@@ -33,6 +33,7 @@ const (
 	regErrF     = "A change of configuration created inconsistent metrics for " +
 		"%q. You have to restart the statsd_exporter, and you should " +
 		"consider the effects on your monitoring setup. Error: %s"
+	udpBufferSize = 4096
 )
 
 var (
@@ -294,7 +295,7 @@ func buildEvent(statType, metric string, value float64) (Event, error) {
 
 func (l *StatsDListener) Listen(e chan<- Events) {
 	// TODO: evaluate proper size according to MTU
-	var buf [512]byte
+	var buf [udpBufferSize]byte
 	for {
 		n, _, err := l.conn.ReadFromUDP(buf[0:])
 		if err != nil {
